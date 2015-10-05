@@ -1,0 +1,51 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "name": "Sidebar Gmail",
+  "description": "Show contents in a gmail sidebar",
+  "version": "0.1",
+  "icons": {
+    "128": "img/gmail-icon-128.png"
+  },
+  "background": {
+    "scripts": [
+      "js/auth.js",
+      "js/background.js"
+    ]
+  },
+  "browser_action": {
+    "default_title": "",
+    "default_icon": "img/gmail-icon-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mail.google.com/*",
+        "https://inbox.google.com/*"
+      ],
+      "js": [
+        "js/lib/jquery.js",
+        "js/lib/underscore.js",
+        "js/lib/inboxsdk.js",
+        "js/global.js",
+        "js/util.js",
+        "js/auth.js",
+        "js/lib/gapi-chrome.js",
+        "app.js"
+      ],
+      "css": ["styles.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": [
+    "https://mail.google.com/",
+    "https://inbox.google.com/",
+    "identity",
+    "https://www.googleapis.com/*",
+  ],
+  "web_accessible_resources": [
+    "img/gmail-icon-128.png",
+    "view/sidebarTemplate.html"
+  ],
+  "manifest_version": 2
+}
